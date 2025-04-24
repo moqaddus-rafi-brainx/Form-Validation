@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <div class="form-container">
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required>
+
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required oninput="validateAge(); hasInvalidInputs()">
+      <p id="age-check" class="hide">Age should be bw 18 and 151</p>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" multiple required onblur="validateEmails();hasInvalidInputs()">
+      <p id="check-email" class="hide">Invalid Email:</p>
+
+      <label for="contactNumber">Contact Number:</label>
+      <input type="tel" id="contact-number" name="contactNumber" oninput="validateNumber();hasInvalidInputs()" >
+      <p id="number-check" class="hide" >Contact number must be 11 digits </p>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" oninput="validatePassword();confirmPassword();hasInvalidInputs();">
+      <p id="8-chars" class="hide">Password should have atleast 8 characters</p>
+      <p id="alphanum" class="hide">Password must have alphanumeric characters</p>
+      <p id="uppercase" class="hide">Password must have one uppercase letter</p>
+      <p id="lowercase" class="hide">Password must have one lowercase letter</p>
+
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirm-password" name="confirm-password" class="invalid" oninput="confirmPassword();hasInvalidInputs()">
+        <p id="unmatched-pass" class="hide">password not same!</p>
+      
+      <button type="submit" id="submitButton" disabled>Submit</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+
+</body>
+<script>
+
+
+
+</script>
+</html>
