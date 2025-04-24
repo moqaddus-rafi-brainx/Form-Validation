@@ -69,13 +69,21 @@ function validateNumber()
     let numberInput=document.getElementById("contact-number");
     let number=numberInput.value;
     let numberCheck=document.getElementById("number-check");
+    let numberCheck2=document.getElementById("number-check2");
     //will run if input addeed then removed
     if(number.trim().length==0)
     {
         numberInput.classList.remove("invalid");
         numberCheck.classList.add("hide");
+        numberCheck2.classList.add("hide");
         return;
 
+    }
+    if(!(/^\d+$/.test(number)))
+    {
+        numberInput.classList.add("invalid");
+        numberCheck2.classList.remove("hide");
+        return;
     }
     //number should be of 11 digits
     if(number.length!=11)

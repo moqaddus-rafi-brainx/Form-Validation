@@ -13,7 +13,6 @@
       <label for="firstName">First Name:</label>
       <input type="text" id="firstName" name="firstName" required>
 
-
       <label for="lastName">Last Name:</label>
       <input type="text" id="lastName" name="lastName" required>
 
@@ -28,6 +27,7 @@
       <label for="contactNumber">Contact Number:</label>
       <input type="tel" id="contact-number" name="contactNumber" oninput="validateNumber();hasInvalidInputs()" >
       <p id="number-check" class="hide" >Contact number must be 11 digits </p>
+      <p id="number-check2" class="hide" >Non digits not allowed</p>
 
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" oninput="validatePassword();confirmPassword();hasInvalidInputs();">
