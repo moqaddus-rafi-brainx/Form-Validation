@@ -11,34 +11,31 @@
     <h2>Registration Form</h2>
     <form id="registrationForm">
       <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" name="firstName" required>
+      <input type="text" id="firstName" name="firstName" class="invalid" oninput="validateFirstName(); hasInvalidInputs();">
 
       <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" name="lastName" required>
+      <input type="text" id="lastName" name="lastName" class="invalid" oninput="validateLastName(); hasInvalidInputs(); ">
 
       <label for="age">Age:</label>
-      <input type="number" id="age" name="age" required oninput="validateAge(); hasInvalidInputs()">
-      <p id="age-check" class="hide">Age should be bw 18 and 151</p>
+      <input type="number" id="age" name="age" class="invalid" oninput="validateAge(); hasInvalidInputs()">
+      <p id="age-check"></p>
 
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" multiple required onblur="validateEmails();hasInvalidInputs()">
-      <p id="check-email" class="hide">Invalid Email:</p>
+      <input type="email" id="email" name="email" multiple class="invalid" onblur="validateEmails();hasInvalidInputs()">
+      <p id="check-email"></p>
 
       <label for="contactNumber">Contact Number:</label>
       <input type="tel" id="contact-number" name="contactNumber" oninput="validateNumber();hasInvalidInputs()" >
-      <p id="number-check" class="hide" >Contact number must be 11 digits </p>
-      <p id="number-check2" class="hide" >Non digits not allowed</p>
+      <p id="number-check"></p>
 
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" oninput="validatePassword();confirmPassword();hasInvalidInputs();">
-      <p id="8-chars" class="hide">Password should have atleast 8 characters</p>
-      <p id="alphanum" class="hide">Password must have alphanumeric characters</p>
-      <p id="uppercase" class="hide">Password must have one uppercase letter</p>
-      <p id="lowercase" class="hide">Password must have one lowercase letter</p>
+      <input type="password" id="password" name="password" class="invalid" oninput="validatePassword();confirmPassword();hasInvalidInputs();">
+      <p id="pass-check"></p>
+      
 
       <label for="confirmPassword">Confirm Password:</label>
       <input type="password" id="confirm-password" name="confirm-password" class="invalid" oninput="confirmPassword();hasInvalidInputs()">
-        <p id="unmatched-pass" class="hide">password not same!</p>
+        <p id="unmatched-pass"></p>
       
       <button type="submit" id="submitButton" disabled>Submit</button>
     </form>
@@ -46,9 +43,4 @@
   <script src="script.js"></script>
 
 </body>
-<script>
-
-
-
-</script>
 </html>

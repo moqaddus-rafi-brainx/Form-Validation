@@ -7,14 +7,6 @@ button:disabled:hover{
 }
 
 
-.hide{
-    display: none;
-}
-
-.show{
-    display: block;
-}
-
 body {
   font-family: Arial, sans-serif;
   background-color: #f2f2f2;

@@ -1,16 +1,53 @@
+//First Name Validity Check
+function validateFirstName()
+{
+    let firstName=document.getElementById("firstName");
+    if(firstName.value.trim()=="")
+    {
+        firstName.classList.add("invalid");
+    }
+    else
+    {
+        firstName.classList.remove("invalid");
+    }
+}
+
+//Last name Validity check
+function validateLastName()
+{
+    let lastName=document.getElementById("lastName");
+    if(lastName.value.trim()=="")
+    {
+        lastName.classList.add("invalid");
+    }
+    else
+    {
+        lastName.classList.remove("invalid");
+    }
+}
+
+
+
 //Email Validation
 function validateEmails()
 {
     let emailInput=document.getElementById("email");
-    let emailArray=emailInput.value.split(',');
+    let emailArray=emailInput.value.trim().split(',');
     console.log(emailArray)
     let emailCheck=document.getElementById("check-email");
     let invalidEmails = [];
+    let validEmails=[];
     let validCheck=true;
+    //Remains invalid of no input
+    if(emailInput.value.trim()=="")
+    {
+        emailCheck.innerText="";
+        emailInput.classList.add("invalid");
+        return;
+    }
     //Check validity of each email
     emailArray.forEach(email => {
-        if(email.trim()!="")
-        {
+       
         const tempInput = document.createElement("input");
         tempInput.type = "email";
         tempInput.value = email.trim();
@@ -19,17 +56,21 @@ function validateEmails()
             invalidEmails.push(email);
             validCheck=false;
          }
-        }
-        
+         else if(email.trim()=="")
+         {
+            invalidEmails.push(email);
+            validCheck=false;
+         } 
     });
     if(validCheck==false)
     {
-        emailCheck.classList.remove("hide");
+        
         emailInput.classList.add("invalid");
-        emailCheck.innerText=`Invalid emails:${invalidEmails}`;
+        emailCheck.innerText=`Invalid emails: \"${invalidEmails} \"`;
     }
     else{
-        emailCheck.classList.add("hide");
+       
+       emailCheck.innerText='';
         emailInput.classList.remove("invalid");
     }
     console.log(invalidEmails);
@@ -44,20 +85,22 @@ function validateAge()
     //Will run if input added then removed.
     if(ageInput.value.trim()==="")
     {
-        ageInput.classList.remove("invalid");
-        ageCheck.classList.add("hide");
+        
+        ageCheck.innerText=""
         return;
 
     }
-    //Age shoud be bw 15 and 151
-    else if(age <15 || age>151)
+    //Age shoud be bw 18 and 151
+    else if(age <18 || age>151)
     {
-        ageCheck.classList.remove("hide");
+        ageCheck.innerText="Age must be b/w 18 to 151"
         ageInput.classList.add("invalid");
+
         return
     }
     else{
-    ageCheck.classList.add("hide");
+    
+    ageCheck.innerText=""
     ageInput.classList.remove("invalid");
     return;
     }
@@ -69,34 +112,37 @@ function validateNumber()
     let numberInput=document.getElementById("contact-number");
     let number=numberInput.value;
     let numberCheck=document.getElementById("number-check");
-    let numberCheck2=document.getElementById("number-check2");
+   
     //will run if input addeed then removed
     if(number.trim().length==0)
     {
-        numberInput.classList.remove("invalid");
-        numberCheck.classList.add("hide");
-        numberCheck2.classList.add("hide");
+        numberCheck.innerText="";
+        numberInput.classList.remove("invalid"); // B/c its optional
         return;
-
     }
     if(!(/^\d+$/.test(number)))
     {
         numberInput.classList.add("invalid");
-        numberCheck2.classList.remove("hide");
+       numberCheck.innerText="Non digits not allowed";
         return;
+    }
+    else if((/^\d+$/.test(number))){
+        numberInput.classList.remove("invalid");
+        numberCheck.innerText="";
+
     }
     //number should be of 11 digits
     if(number.length!=11)
     {
-        numberCheck.classList.remove("hide");
+        numberCheck.innerText="Number of digits must be 11";
         numberInput.classList.add("invalid");
         return;
     }
     else
     {
-    numberCheck.classList.add("hide");
-    numberInput.classList.remove("invalid");
-    return;
+        numberCheck.innerText="";
+        numberInput.classList.remove("invalid");
+        return;
     }
 
 }
@@ -111,21 +157,23 @@ function confirmPassword()
     let matchPass=document.getElementById("unmatched-pass");
     if(confirmPasswordInput.value.trim()==="")
     {
-        matchPass.classList.add("hide");
-
+       
+        matchPass.innerText="";
+        confirmPasswordInput.classList.add("invalid");
         return;
     }
     else if(password!=confirmPassword)
     {
-        matchPass.classList.remove("hide");
-        
-        confirmPasswordInput.classList.add("invalid")
+      
+        matchPass.innerText="Confirm Password is wrong";
+        confirmPasswordInput.classList.add("invalid");
 
         return false;
     }
     else
     {
-        matchPass.classList.add("hide");
+      
+        matchPass.innerText="";
         confirmPasswordInput.classList.remove("invalid");
         return true;
     }
@@ -136,19 +184,12 @@ function validatePassword()
 {
     let passwordInput=document.getElementById("password");
     let password=passwordInput.value.trim();
-    let check1=document.getElementById("8-chars");
-    let check2=document.getElementById("alphanum");
-    let check3=document.getElementById("uppercase");
-    let check4=document.getElementById("lowercase");
-    let c1,c2,c3,c4;
-
+    let check=document.getElementById("pass-check");
+    
     if(passwordInput.value.trim()==="")
     {
-        passwordInput.classList.remove("invalid");
-        check1.classList.add("hide");
-        check2.classList.add("hide");
-        check3.classList.add("hide");
-        check4.classList.add("hide");
+        check.innerText="";
+        passwordInput.classList.add("invalid");
         return;
 
     }
@@ -156,67 +197,58 @@ function validatePassword()
     if(password.length<8)
     {
        
-        check1.classList.remove("hide");
-       
-        c1=false;
+        check.innerText="Password should have atleast 8 characters";
+        passwordInput.classList.add("invalid");
+        return;
 
     }
-    else{
-        check1.classList.add("hide");
-       
-        c1=true;
+    else if(password.length==8){
+        check.innerText="";
 
     }
     //Alphanumeric check
     if(!(/^(?=.*[a-zA-Z])(?=.*\d)/.test(password)))
     {
         
-        check2.classList.remove("hide");
-       
-        c2=false;
+        check.innerText="Password must have alphanumberic characters";
+        passwordInput.classList.add("invalid");
+        return;
     }
-    else
+    else if ((/^(?=.*[a-zA-Z])(?=.*\d)/.test(password)))
     {
-        check2.classList.add("hide");
-        
-        c2=true;
+       
+       check.innerText="";
     }
     //Uppercase letter check
     if(!(/[A-Z]/.test(password)))
     {
         
-        check3.classList.remove("hide");
-       
-        c3=false;
-    }
-    else
-    {
-        check3.classList.add("hide");
         
-        c3=true;
+        check.innerText="Password must have one uppercase letter.";
+        passwordInput.classList.add("invalid");
+        return;
+    }
+    else if((/[A-Z]/.test(password)))
+    {
+       
+       check.innerText="";
     }
     //Lowercase letter check
     if(!(/[a-z]/.test(password)))
     {
-        
-        check4.classList.remove("hide");
-        
-        c4=false;
-    }
-    else
-    {
-        check4.classList.add("hide");
-        
-        c4=true;
-    }
-
-    if(!(c1 && c2 && c3 && c4))
-    {
+       
+        check.innerText="Passowrd must contain at least one lowercase letter";
         passwordInput.classList.add("invalid");
         return;
     }
-        passwordInput.classList.remove("invalid");
-        return;
+    else if((/[a-z]/.test(password)))
+    {
+       
+       check.innerText="";
+    }
+
+    passwordInput.classList.remove("invalid");
+    return;
 
 }
 
