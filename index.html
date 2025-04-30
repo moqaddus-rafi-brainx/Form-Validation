@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <div class="form-container">
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" class="invalid" oninput="validateFirstName(); hasInvalidInputs();">
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" class="invalid" oninput="validateLastName(); hasInvalidInputs(); ">
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" class="invalid" oninput="validateAge(); hasInvalidInputs()">
+      <p id="age-check"></p>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" multiple class="invalid" onblur="validateEmails();hasInvalidInputs()">
+      <p id="check-email"></p>
+
+      <label for="contactNumber">Contact Number:</label>
+      <input type="tel" id="contact-number" name="contactNumber" oninput="validateNumber();hasInvalidInputs()" >
+      <p id="number-check"></p>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" class="invalid" oninput="validatePassword();confirmPassword();hasInvalidInputs();">
+      <p id="pass-check"></p>
+      
+
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirm-password" name="confirm-password" class="invalid" oninput="confirmPassword();hasInvalidInputs()">
+        <p id="unmatched-pass"></p>
+      
+      <button type="submit" id="submitButton" disabled>Submit</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+
+</body>
+</html>
